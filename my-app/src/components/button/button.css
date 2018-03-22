@@ -1,0 +1,10 @@
+.exampleButton {
+    background-color: #024750;
+    color: white;
+    border-radius: 2px;
+    width: 100px;
+    height: 50px;
+    padding: 2px;
+    border-width: 3px;
+    border-color: steelblue;
+}

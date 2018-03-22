@@ -1,36 +1,51 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Form, FormGroup, Col, FormControl, ControlLabel, Button } from "react-bootstrap";
+import { Grid, Form, FormGroup, Col, FormControl, ControlLabel, Button, HelpBlock } from "react-bootstrap";
 
-export default class contact extends Component {
+export default class contact extends React.Component {
   
-      render() {
-        return (
-          <Form horizontal>
-            <FormGroup controlId="formHorizontalEmail">
-              <Col componentClass={ControlLabel} sm={2}>
-                Email
-              </Col>
-              <Col sm={10}>
-                <FormControl type="email" placeholder="Email" />
-              </Col>
-            </FormGroup>
+    constructor(props, context) {
+      super(props, context);
 
-            <FormGroup controlId="formHorizontalPassword">
-              <Col componentClass={ControlLabel} sm={2}>
-                Password
-              </Col>
-              <Col sm={10}>
-                <FormControl type="password" placeholder="Password" />
-              </Col>
-            </FormGroup>
+      this.handleChange = this.handleChange.bind(this);
 
-            <FormGroup>
-              <Col smOffset={2} sm={10}>
-                <Button type="submit">Sign in</Button>
-              </Col>
+      this.state = {
+        value: ''
+      };
+    }
+
+    getValidationState() {
+      const length = this.state.value.length;
+      if (length > 9) return 'success';
+      else if (length > 5) return 'warning';
+      else if (length > 0) return 'error';
+      return null;
+    }
+
+    handleChange(e) {
+      this.setState({ value: e.target.value });
+    }
+
+    render() {
+      return (
+        <Grid>
+          <form>
+            <FormGroup
+              controlId="formBasicText"
+              validationState={this.getValidationState()}
+            >
+              <ControlLabel>Working example with validation</ControlLabel>
+              <FormControl
+                type="text"
+                value={this.state.value}
+                placeholder="Must 10 characters "
+                onChange={this.handleChange}
+              />
+              <FormControl.Feedback />
+              <HelpBlock>Validation is based on string length.</HelpBlock>
             </FormGroup>
-          </Form>
-        );
-      }
+          </form>
+        </Grid>
+      );
+    }
   }
