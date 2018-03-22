@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Panel } from "react-bootstrap";
+import "./about.css";
 
 export default class about extends React.Component {
     constructor(props, context) {
@@ -13,7 +14,7 @@ export default class about extends React.Component {
   
     render() {
       return (
-        <div>
+        <div className="quoteDiv">
           <Button onClick={() => this.setState({ open: !this.state.open })}>
             Click to toggle Bob Ross quotes!
           </Button>
